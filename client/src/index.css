@@ -96,4 +96,8 @@ a{
     border-radius: 5px;
     box-shadow: 1px 1px 5px #7a7878;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.nav-items button:hover{
+    transform: scale(1.05, 1.05);
 }

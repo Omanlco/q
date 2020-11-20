@@ -22,7 +22,7 @@ module.exports = {
                 endDate: req.body.endDate,
                 filePath
             })
-            //calendar(req)
+            calendar(req)
             res.send(todo)
         } catch(err){
             console.log(err)
