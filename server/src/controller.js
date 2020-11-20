@@ -51,7 +51,9 @@ module.exports = {
     deleteTodo(req, res){
         Todo.findOne({where: {id: req.params.id}})
         .then((todo)=> todo.destroy())
-        .then(()=> res.send("Item deleted"))
+        .then((data)=> {
+            return res.send(data.dataValues)
+        })
         .catch(err=> res.status(500).send({
             error: "There was a problem deleting item"
         }))

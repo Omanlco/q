@@ -10,8 +10,8 @@ const Form = ({updateEvents}) => {
         description: "",
         location: "",
         email:"",
-        startDate: "",
-        endDate: "",
+        startDate: new Date(),
+        endDate: new Date(),
         file: null,
 
 
@@ -83,11 +83,32 @@ const Form = ({updateEvents}) => {
                 </div>
 
                 <div className="input-wrapper">
-                    <DatePicker mode="date"  onChange={handleStartDate}  dateFormat="MM/dd/yy" placeholderText="start date"/>
+                    <small>Start date</small>
+                    <DatePicker
+                    mode="date" 
+                    selected={state.startDate}
+                    onChange={handleStartDate}
+                    dateFormat="MM/dd/yy"
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeCaption="Time"
+                    timeIntervals={20}
+                    
+                    />
                 </div>
 
                 <div className="input-wrapper">
-                    <DatePicker mode="date"  onChange={handleEndDate}   dateFormat="MM/dd/yy" placeholderText="end date"/>
+                    <small>End date</small>
+                    <DatePicker
+                    mode="date"
+                    selected={state.endDate}
+                    onChange={handleEndDate}
+                    dateFormat="MM/dd/yy"
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeCaption="Time"
+                    timeIntervals={20}
+                    />
                 </div>
 
                 <div className="input-wrapper" >
@@ -95,8 +116,10 @@ const Form = ({updateEvents}) => {
                 </div>
 
                 <div className="input-wrapper" >
-                    <input type='submit' placeholder='Submit' />
+                    <button className="submit-button">Submit</button>
                 </div>
+                <br />
+                <p>Note: Events created will be added to your google calendar</p>
 
             </form>    
         </div>

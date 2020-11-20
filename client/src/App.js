@@ -31,14 +31,14 @@ const App = () => {
         AuthenticationService.getWeek()
         .then(res=> setEvents(res.data))
         .catch(err=> console.log(err))
+        break;
 
       case 'month':
         AuthenticationService.getMonth()
         .then(res=> setEvents(res.data))
         .catch(err=> console.log(err))
+        break;
           
-          
-    
       default:
         break;
     }
