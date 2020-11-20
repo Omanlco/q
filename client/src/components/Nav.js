@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Nav = () => {
+const Nav = ({getFor}) => {
     return (
         <nav>
             <div className="nav-items">
-                <a href="/">Events(Day)</a>
-                <a href="/">Events(Week)</a>
-                <a href="/">Events(Month)</a>
+                <button onClick={()=> getFor('day')}>Events(Day)</button>
+                <button onClick={()=> getFor('week')}>Events(Week)</button>
+                <button onClick={()=> getFor('month')}>Events(Month)</button>
             </div>
             
         </nav>

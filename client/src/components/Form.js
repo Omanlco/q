@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 
-const Form = () => {
+const Form = ({updateEvents}) => {
     const [state, setState] = useState({
         todo: "",
         description: "",
@@ -59,7 +59,7 @@ const Form = () => {
         
         AuthenticationService.addEvent(data)
         .then(res=>{
-            console.log(res)
+            updateEvents(res.data)
         }).catch(err=>console.log(err))
     }
     return (

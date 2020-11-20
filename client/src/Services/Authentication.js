@@ -17,6 +17,6 @@ export default {
         return Api().post('/api/add_todo', credential)
     },
     deleteEvent(id){
-        return Api().delete('/api/delete/:id', id)
+        return Api().delete(`api/delete/${id}`)
     }
 }

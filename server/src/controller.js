@@ -36,6 +36,7 @@ module.exports = {
         try{
             const todos = await Todo.findAll({
                 limit: 10
+                
             }) 
             res.status(200).send(todos)
 
@@ -62,7 +63,7 @@ module.exports = {
             const sevendaysTime = new Date(new Date().setDate(new Date().getDate() + 7))
             const todo = await Todo.findAll({
                 where: {
-                    date_completed: {
+                    startDate: {
                         [Op.gt]: new Date(),
                         [Op.lt]: sevendaysTime
                         
@@ -84,7 +85,7 @@ module.exports = {
             const endTime = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 23,59,59)
             const todo = await Todo.findAll({
                 where: {
-                    date_completed: {
+                    startDate: {
                         [Op.gte]: startTime,
                         [Op.lte]: endTime
                         
@@ -106,7 +107,7 @@ module.exports = {
             const endMonth = new Date(new Date().getFullYear(), new Date().getMonth()+1)
             const todo = await Todo.findAll({
                 where: {
-                    date_completed: {
+                    startDate: {
                         [Op.gte]: startMonth,
                         [Op.lt]: endMonth    
                     }

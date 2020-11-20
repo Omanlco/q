@@ -87,11 +87,13 @@ a{
     justify-content: space-between;
     margin-bottom: 10px;
 }
-.nav-items a{
+.nav-items button{
     display: inline-block;
+    border: none;
     background-color: #e3515e;
     padding: 5px;
     color: #fff;
     border-radius: 5px;
     box-shadow: 1px 1px 5px #7a7878;
+    cursor: pointer;
 }

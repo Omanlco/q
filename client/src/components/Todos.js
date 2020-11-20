@@ -3,22 +3,15 @@ import Nav from './Nav'
 import Todo from './Todo'
 import AuthenticationService from '../Services/Authentication'
 
-const Todos = () => {
+const Todos = ({events, getFor}) => {
 
-    const [events, setEvents] = useState([])
-
-    useEffect(()=>{
-        AuthenticationService.getAllEvents()
-        .then((res)=>{
-            setEvents(res.data)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    },[])
+   
     console.log(events)
+    let reversed = [...events].reverse()
 
-    const deleteEvent = (id)=>{
+    const deleteEvent = async (id)=>{
         console.log(id)
+        await AuthenticationService.deleteEvent(id)
 
     }
     const editEvent = (id)=>{
@@ -27,9 +20,9 @@ const Todos = () => {
 
     return (
         <div className="Todos-wrapper">
-            <Nav />
+            <Nav getFor={getFor} />
             {
-                events.map((data, index)=>{
+                reversed.map((data, index)=>{
                     return (
                         <Todo deleteEvent={deleteEvent} editEvent={editEvent} key={index} details={data} />
                     )
