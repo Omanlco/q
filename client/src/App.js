@@ -10,35 +10,44 @@ const App = () => {
   useEffect(()=>{
       AuthenticationService.getAllEvents()
       .then((res)=>{
-          setEvents(res.data)
+          setEvents(res.data.reverse())
       }).catch((err)=>{
           console.log(err)
       })
   },[])
 
+  const deleteEvent = (id)=>{
+    console.log(id)
+    AuthenticationService.deleteEvent(id)
+    .then((res)=>{
+       const filteredData = events.filter((data)=> data.id !== res.data.id)
+       setEvents(filteredData)   
+    }).catch(err=>console.log(err))
+  }
+
   const updateEvents = (event)=>{
-    setEvents(events=>[...events, event])
+    setEvents(events=>[...events, event].reverse())
   }
   const getFor = (duration)=>{
     switch (duration) {
       case 'day':
         AuthenticationService.getDay()
-        .then(res=> setEvents(res.data))
+        .then(res=> setEvents(res.data.reverse()))
         .catch(err=> console.log(err))
         break;
       
       case 'week':
         AuthenticationService.getWeek()
-        .then(res=> setEvents(res.data))
+        .then(res=> setEvents(res.data.reverse()))
         .catch(err=> console.log(err))
         break;
 
       case 'month':
         AuthenticationService.getMonth()
-        .then(res=> setEvents(res.data))
+        .then(res=> setEvents(res.data.reverse()))
         .catch(err=> console.log(err))
         break;
-          
+
       default:
         break;
     }
@@ -49,7 +58,7 @@ const App = () => {
         <Form updateEvents={updateEvents}/>
       </div>
       <div className="content-wrapper">
-        <Todos getFor={getFor} events={events} />
+        <Todos deleteEvent={deleteEvent} getFor={getFor} events={events} />
       </div>
     </div>
   )
